@@ -140,8 +140,8 @@ export AWS_ACCESS_KEY_ID="${access_key_id}"
 export AWS_SECRET_ACCESS_KEY="${secret_access_key}"
 
 # do a sync -> delete no longer existing objects
-echo_info "$ aws s3 sync ${expanded_upload_local_path} ${s3_url} --delete --acl ${aclcmd}"
-aws s3 sync "${expanded_upload_local_path}" "${s3_url}" --delete --acl ${aclcmd}
+echo_info "$ aws s3 cp "${expanded_upload_local_path}" "${s3_url}" --recursive --acl ${aclcmd}"
+aws s3 cp "${expanded_upload_local_path}" "${s3_url}" --recursive --acl ${aclcmd}
 
 if [[ "${set_acl_only_on_changed_objets}" != "true" ]] ; then
   echo_details "Setting ACL on every object, this can take some time..."
